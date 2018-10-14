@@ -78,7 +78,7 @@ public class Main {
         }
     }
 
-    public void Filter(BufferedImage img){
+    public void Filter(BufferedImage img){//метод модификации, который реализовывает правильный алгоритм, остальное дерьмо полнейшее
         BufferedImage outputImg = img;
         int X,Y;
         int[] mat = new int[9];
@@ -97,8 +97,7 @@ public class Main {
             for (X=1;X<width-1;X++){
                 int bx=0,ax=0;
                 count = 0;
-                int resault_R=0, resault_G=0,resault_B=0;
-                int alpha=255;
+                int resault_R=0, resault_G=0,resault_B=0, alpha=255;
                 for (bx = -1; bx<2; bx++){
                     for (ax = -1;ax<2;ax++){
                         int inputColor = img.getRGB(X+bx,Y+ax);
@@ -125,13 +124,13 @@ public class Main {
             }
         }
         try {
-            String fileName = "newFile"+expansionFile;
-            ImageIO.write(outputImg, expansionFile, new File("nibody+20."+expansionFile.toLowerCase()));
+            String fileName = "newFile"+expansionFile.toLowerCase();
+            ImageIO.write(outputImg, expansionFile, new File(fileName));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    public  void readToArray(String path){
+    public  void readToArray(String path){ //метод обработки изображения и вызывающий метод модификации изображения
         BufferedImage bufImg;
         File file = new File(path);
         try {
@@ -146,7 +145,7 @@ public class Main {
         }
     }
 
-    public void realization(BufferedImage inputImage){
+    public void realization(BufferedImage inputImage){ //метод увеличения значения каждого пикселя на 5 едениц
         BufferedImage outputImage = inputImage;
         byte[][] mas = new byte[height][width];
         for (int x=0;x<height;x++){
@@ -170,20 +169,7 @@ public class Main {
         }*/
 
     }
-    public void ImgToImg() throws IOException {
-        BufferedImage bufImg;
-        bufImg= ImageIO.read(new File("example.png"));
-        byte[][] green = new byte[height][width];
-        for (int x=0;x<height;x++){
-            for (int y=0;y<width;y++){
-                int color = bufImg.getRGB(x,y);
-                green[x][y] = (byte)(color>>8);
-            }
-        }
-        ImageIO.write(bufImg, "PNG", new File("newFile.png"));
-    }
-
-    public int chekColor( int inputColor){
+    public int chekColor( int inputColor){// непосредственное увеличение каждого пикселя на 5 едениц
         Color color = new Color(inputColor,true);
         int count = 5;
         int alpha = color.getAlpha();
@@ -206,6 +192,7 @@ public class Main {
         int outputColor = newColor.getRGB();
         return outputColor;
     }
+
 
     public static void main(String[] args){
         Main m = new Main();
