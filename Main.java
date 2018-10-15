@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-
+//Класс
 public class Main {
     private String expansionFile;
     private int width, height;
