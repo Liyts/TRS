@@ -4,6 +4,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.sql.Time;
+import java.time.LocalTime;
 
 public class Main {
     private String expansionFile;
@@ -195,8 +197,11 @@ public class Main {
     }
     public static void main(String[] args) {
         Main main = new  Main("sa.jpg");
+        long begin = System.currentTimeMillis(), end;
         //main.runThread(10);//вызывается метод и передается количество потоков
         main.Filter();
+        end = System.currentTimeMillis();
+        System.out.println(end - begin);
     }
 
 }
